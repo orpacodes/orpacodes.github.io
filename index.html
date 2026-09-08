@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sumaiya Islam Orpa — CSE student, aspiring software developer, and technology enthusiast.">
+  <title>Sumaiya Islam Orpa — CSE Student & Developer</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#080b0f;
+      --bg-soft:#0e1318;
+      --card:#11171d;
+      --card-2:#151c23;
+      --text:#f5f7f5;
+      --muted:#9ba6a8;
+      --line:rgba(255,255,255,.10);
+      --green:#9bb8c7;
+      --blue:#9bb8c7;
+      --purple:#9bb8c7;
+      --orange:#c2b39a;
+      --pink:#b0bbc2;
+      --max:1180px;
+      --radius:26px;
+      --shadow:0 25px 80px rgba(0,0,0,.35);
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      background:
+        radial-gradient(circle at 15% 10%,rgba(87,214,177,.09),transparent 24%),
+        radial-gradient(circle at 85% 22%,rgba(108,156,255,.09),transparent 27%),
+        radial-gradient(circle at 50% 75%,rgba(169,135,255,.055),transparent 30%),
+        var(--bg);
+      color:var(--text);
+      font-family:"DM Sans",sans-serif;
+      line-height:1.65;
+      overflow-x:hidden;
+    }
+    body:before{
+      content:"";
+      position:fixed;inset:0;pointer-events:none;z-index:-1;
+      background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+                       linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+      background-size:70px 70px;
+      mask-image:linear-gradient(to bottom,black,transparent 90%);
+    }
+    a{text-decoration:none;color:inherit}
+    button{font:inherit}
+    .container{width:min(var(--max),calc(100% - 42px));margin:auto}
+
+    /* NAV */
+    nav{
+      position:fixed;top:18px;left:50%;transform:translateX(-50%);
+      width:min(var(--max),calc(100% - 42px));z-index:1000;
+      border:1px solid var(--line);
+      background:rgba(10,14,18,.70);
+      backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+      border-radius:18px;
+      box-shadow:0 15px 45px rgba(0,0,0,.20);
+    }
+    .nav-inner{height:68px;padding:0 21px;display:flex;align-items:center;justify-content:space-between}
+    .brand{
+      font-family:"Space Grotesk";font-size:19px;font-weight:700;
+      letter-spacing:-.04em;display:flex;align-items:center;gap:9px
+    }
+    .brand-dot{
+      width:9px;height:9px;border-radius:50%;background:var(--green);
+      box-shadow:0 0 20px var(--green);animation:pulse 2s infinite
+    }
+    .nav-links{display:flex;gap:29px;list-style:none;color:#aeb7b8;font-size:13px;font-weight:600}
+    .nav-links a{transition:.25s}
+    .nav-links a:hover{color:var(--green)}
+    .menu{display:none;border:0;background:none;color:white;font-size:25px;cursor:pointer}
+
+    /* HERO */
+    .hero{min-height:100vh;display:flex;align-items:center;padding:155px 0 100px;position:relative}
+    .hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:85px;align-items:center}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:9px;
+      color:var(--green);font-size:11px;font-weight:800;
+      letter-spacing:.13em;text-transform:uppercase;
+      border:1px solid rgba(87,214,177,.20);
+      background:rgba(87,214,177,.07);
+      padding:8px 12px;border-radius:999px;margin-bottom:25px
+    }
+    .eyebrow i{width:6px;height:6px;background:var(--green);border-radius:50%;box-shadow:0 0 12px var(--green)}
+    h1,h2,h3{font-family:"Manrope","Space Grotesk",sans-serif;line-height:1.02;letter-spacing:-.06em}
+    h1{font-size:clamp(52px,7vw,91px);max-width:850px}
+    .name{
+      display:inline-block;
+      background:linear-gradient(90deg,var(--green),var(--blue),var(--purple),var(--green));
+      background-size:300% auto;
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+      animation:nameFlow 6s linear infinite;
+      position:relative
+    }
+    .name:after{
+      content:"";position:absolute;left:0;bottom:-8px;width:100%;height:3px;
+      border-radius:5px;background:linear-gradient(90deg,var(--green),var(--blue),var(--purple));
+      transform:scaleX(0);transform-origin:left;animation:underline 1.2s .5s forwards
+    }
+    .hero-copy{font-size:18px;color:var(--muted);max-width:680px;margin-top:29px}
+    .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:35px}
+    .btn{
+      display:inline-flex;align-items:center;gap:9px;padding:13px 18px;border-radius:12px;
+      border:1px solid var(--line);font-size:13px;font-weight:700;
+      transition:transform .25s,box-shadow .25s,border-color .25s
+    }
+    .btn:hover{transform:translateY(-4px);box-shadow:0 14px 35px rgba(0,0,0,.3);border-color:rgba(87,214,177,.35)}
+    .primary{background:#f3f6f4;color:#101412;border-color:#f3f6f4}
+    .secondary{background:rgba(255,255,255,.03)}
+
+    /* ORBIT CARD */
+    .visual{position:relative;min-height:480px;display:grid;place-items:center}
+    .orbit{
+      position:absolute;border:1px solid rgba(255,255,255,.08);border-radius:50%;
+      animation:spin 18s linear infinite
+    }
+    .orbit.one{width:360px;height:360px}
+    .orbit.two{width:270px;height:270px;animation-direction:reverse;animation-duration:13s}
+    .orbit.three{width:450px;height:450px;animation-duration:28s}
+    .orbit:before{
+      content:"";position:absolute;width:7px;height:7px;border-radius:50%;
+      background:var(--green);top:18%;left:3%;box-shadow:0 0 20px var(--green)
+    }
+    .orbit.two:before{background:var(--blue);left:auto;right:8%;top:20%;box-shadow:0 0 20px var(--blue)}
+    .profile-card{
+      width:min(350px,100%);padding:29px;border:1px solid var(--line);
+      border-radius:28px;background:rgba(17,23,29,.85);
+      backdrop-filter:blur(20px);box-shadow:var(--shadow);position:relative;z-index:2;
+      animation:cardFloat 5s ease-in-out infinite
+    }
+    .monogram{
+      width:82px;height:82px;border-radius:23px;display:grid;place-items:center;
+      font-family:"Space Grotesk";font-size:27px;font-weight:700;
+      background:linear-gradient(135deg,var(--green),var(--blue));
+      color:#08100d;box-shadow:0 0 45px rgba(87,214,177,.20);margin-bottom:25px
+    }
+    .profile-card h3{font-size:27px;margin-bottom:5px}
+    .role{color:var(--muted);font-size:13px}
+    .status{
+      margin-top:25px;padding:14px;border:1px solid var(--line);border-radius:15px;
+      display:flex;justify-content:space-between;font-size:12px;color:var(--muted)
+    }
+    .status strong{color:var(--green)}
+    .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}
+    .chip{padding:7px 10px;border-radius:9px;background:rgba(255,255,255,.05);font-size:11px;color:#c4cccd}
+
+    /* SECTIONS */
+    section{padding:115px 0}
+    .section-top{display:grid;grid-template-columns:.55fr 1.45fr;gap:70px;margin-bottom:55px}
+    .label{font-size:11px;color:var(--green);font-weight:800;letter-spacing:.15em;text-transform:uppercase}
+    .section-top h2{font-size:clamp(39px,5vw,63px)}
+    .section-top p{color:var(--muted);max-width:690px;margin-top:19px}
+
+    /* ABOUT */
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .card{
+      border:1px solid var(--line);background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.018));
+      border-radius:var(--radius);padding:32px;position:relative;overflow:hidden;
+      transition:transform .35s, border-color .35s, box-shadow .35s
+    }
+    .card:hover{transform:translateY(-7px);border-color:rgba(87,214,177,.25);box-shadow:var(--shadow)}
+    .card:before{
+      content:"";position:absolute;width:170px;height:170px;border-radius:50%;right:-90px;top:-90px;
+      background:var(--green);opacity:.08;filter:blur(4px)
+    }
+    .card.blue:before{background:var(--blue)}
+    .card.orange:before{background:var(--orange)}
+    .icon{
+      width:45px;height:45px;display:grid;place-items:center;border-radius:13px;
+      background:rgba(87,214,177,.10);color:var(--green);font-size:20px;margin-bottom:22px
+    }
+    .blue .icon{color:var(--blue);background:rgba(108,156,255,.10)}
+    .orange .icon{color:var(--orange);background:rgba(255,155,104,.10)}
+    .card h3{font-size:25px;margin-bottom:15px}
+    .details{list-style:none;color:var(--muted);font-size:14px}
+    .details li{padding:8px 0;border-bottom:1px solid rgba(255,255,255,.055)}
+    .details li:last-child{border-bottom:0}
+    .details b{color:#e6ebea;font-weight:600}
+
+    /* LEARNING */
+    .learning-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}
+    .skill{
+      min-height:285px;border:1px solid var(--line);border-radius:var(--radius);
+      background:var(--card);padding:28px;position:relative;overflow:hidden;
+      transition:transform .35s,background .35s
+    }
+    .skill:hover{transform:translateY(-9px);background:var(--card-2)}
+    .skill-no{font-family:"Space Grotesk";font-size:11px;color:#788184}
+    .skill h3{font-size:30px;margin-top:70px}
+    .skill p{color:var(--muted);font-size:14px;margin-top:10px}
+    .skill-line{height:1px;background:var(--line);margin-top:25px;position:relative}
+    .skill-line span{position:absolute;height:1px;left:0;top:0;background:var(--green);width:0;transition:width 1.2s ease}
+    .skill:nth-child(2) .skill-line span{background:var(--blue)}
+    .skill:nth-child(3) .skill-line span{background:var(--purple)}
+    .skill.visible .skill-line span{width:78%}
+    .skill-glow{
+      position:absolute;width:130px;height:130px;border-radius:50%;right:-55px;top:-55px;
+      background:var(--green);filter:blur(25px);opacity:.09
+    }
+    .skill:nth-child(2) .skill-glow{background:var(--blue)}
+    .skill:nth-child(3) .skill-glow{background:var(--purple)}
+
+    /* GOALS */
+    .goals{
+      padding:70px;border-radius:34px;border:1px solid var(--line);
+      background:
+        radial-gradient(circle at 100% 0%,rgba(108,156,255,.13),transparent 35%),
+        radial-gradient(circle at 0% 100%,rgba(87,214,177,.10),transparent 35%),
+        #0d1318;
+      position:relative;overflow:hidden
+    }
+    .goals h2{font-size:clamp(40px,5vw,65px);max-width:760px;margin-top:16px}
+    .goals-copy{max-width:700px;color:var(--muted);margin-top:20px}
+    .goal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-top:42px}
+    .goal{
+      padding:21px;border:1px solid var(--line);border-radius:17px;background:rgba(255,255,255,.025);
+      transition:background .3s,transform .3s
+    }
+    .goal:hover{background:rgba(255,255,255,.055);transform:translateY(-4px)}
+    .goal strong{display:block;font-family:"Manrope";font-size:15px}
+    .goal span{display:block;color:var(--muted);font-size:12px;margin-top:5px}
+
+    /* PHILOSOPHY */
+    .philosophy{text-align:center;max-width:950px;margin:auto}
+    .quote-symbol{
+      font-family:Georgia,serif;color:var(--orange);font-size:100px;line-height:.45;
+      animation:pulse 3s ease-in-out infinite
+    }
+    .philosophy h2{font-size:clamp(40px,6vw,72px);margin-top:35px}
+    .philosophy h2 span{color:var(--green)}
+    .philosophy p{color:var(--muted);max-width:690px;margin:25px auto 0}
+
+    /* TIMELINE / CURRENT JOURNEY */
+    .journey{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .journey-card{padding:32px;border:1px solid var(--line);border-radius:var(--radius);background:rgba(255,255,255,.025)}
+    .journey-card h3{font-size:27px;margin-bottom:18px}
+    .journey-step{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
+    .journey-step:last-child{border:0}
+    .step-num{min-width:31px;height:31px;border-radius:10px;background:rgba(87,214,177,.1);color:var(--green);display:grid;place-items:center;font-size:11px;font-weight:800}
+    .journey-step strong{display:block;font-size:14px}
+    .journey-step span{color:var(--muted);font-size:12px}
+
+    /* CONTACT */
+    .contact{
+      border:1px solid var(--line);border-radius:34px;padding:65px;
+      background:linear-gradient(135deg,rgba(87,214,177,.08),rgba(108,156,255,.07));
+      display:flex;justify-content:space-between;align-items:center;gap:35px;position:relative;overflow:hidden
+    }
+    .contact:after{
+      content:"";position:absolute;width:260px;height:260px;border:1px solid rgba(255,255,255,.08);
+      border-radius:50%;right:-100px;bottom:-140px
+    }
+    .contact h2{font-size:clamp(40px,5vw,62px);max-width:750px;margin-top:14px}
+    .contact p{color:var(--muted);max-width:620px;margin-top:17px}
+    .connect-badge{
+      min-width:90px;height:90px;border-radius:25px;display:grid;place-items:center;
+      border:1px solid var(--line);background:rgba(255,255,255,.04);font-size:28px;color:var(--green);
+      animation:float 4s ease-in-out infinite
+    }
+
+    footer{padding:50px 0 65px;text-align:center;color:#697477;font-size:12px}
+    footer span{color:var(--green)}
+
+    /* REVEAL */
+    .reveal{opacity:0;transform:translateY(35px);transition:opacity .8s ease,transform .8s ease}
+    .reveal.visible{opacity:1;transform:none}
+
+    @keyframes nameFlow{to{background-position:300% center}}
+    @keyframes underline{to{transform:scaleX(1)}}
+    @keyframes pulse{0%,100%{opacity:.75;transform:scale(1)}50%{opacity:1;transform:scale(1.08)}}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+    @keyframes cardFloat{0%,100%{transform:translateY(0) rotate(1deg)}50%{transform:translateY(-10px) rotate(-1deg)}}
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    @media(max-width:900px){
+      .hero-grid,.section-top,.journey{grid-template-columns:1fr}
+      .hero-grid{gap:55px}.visual{min-height:420px}
+      .about-grid,.learning-grid{grid-template-columns:1fr 1fr}
+      .goal-grid{grid-template-columns:1fr 1fr}.goals{padding:48px 32px}
+      .section-top{gap:20px}
+    }
+    @media(max-width:650px){
+      .container,nav{width:calc(100% - 28px)}
+      nav{top:9px}
+      .nav-inner{height:62px}
+      .menu{display:block}
+      .nav-links{
+        position:absolute;display:none;top:58px;left:7px;right:7px;
+        padding:10px;background:#10161b;border:1px solid var(--line);border-radius:15px;
+        flex-direction:column;gap:0
+      }
+      .nav-links.open{display:flex}
+      .nav-links a{display:block;padding:10px}
+      .hero{padding-top:125px}
+      h1{font-size:50px}
+      .hero-copy{font-size:16px}
+      .visual{min-height:390px}.orbit.three{width:340px;height:340px}.orbit.one{width:285px;height:285px}.orbit.two{width:220px;height:220px}
+      .profile-card{width:310px}
+      section{padding:82px 0}
+      .about-grid,.learning-grid,.goal-grid{grid-template-columns:1fr}
+      .skill{min-height:240px}.skill h3{margin-top:48px}
+      .goals{padding:40px 23px}
+      .contact{padding:42px 24px;align-items:flex-start;flex-direction:column}
+    }
+    @media(prefers-reduced-motion:reduce){
+      *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+      html{scroll-behavior:auto}
+    }
+  </style>
+
+<style id="hero-refinements">
+  .hero-title {
+    font-size: clamp(40px, 5vw, 58px);
+    line-height: 1.05;
+    letter-spacing: -0.045em;
+    max-width: 760px;
+  }
+
+  .hero-title .hello {
+    display: block;
+    font-size: 0.40em;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: #aeb8bd;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  .hero-title .name {
+    display: inline-block;
+    position: relative;
+    font-family: "Manrope", "DM Sans", sans-serif;
+    font-style: italic;
+    font-weight: 600;
+    letter-spacing: 0;
+    font-stretch: normal;
+    background: linear-gradient(105deg, #f1f5f6 0%, #c7d8df 48%, #8faaba 100%);
+    background-size: 180% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: nameSoftShift 6s ease-in-out infinite;
+  }
+
+  /* No underline under the name */
+  .hero-title .name::after {
+    display: none;
+    content: none;
+  }
+
+  .hero-title .name .name-last-a {
+    display: inline-block;
+    letter-spacing: 0.015em;
+    margin-left: 0.015em;
+  }
+
+  .hero-title .tagline {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    max-width: 100%;
+    margin-top: 14px;
+    white-space: nowrap;
+    font-size: 0.42em;
+    line-height: 1.3;
+    letter-spacing: -0.015em;
+    font-weight: 500;
+    color: #aeb9be;
+    font-family: "Times New Roman", Times, serif;
+    overflow: visible;
+  }
+
+  .hero-title .typing-text {
+    display: inline-block;
+    font-family: "Times New Roman", Times, serif;
+  }
+
+  .hero-title .typing-cursor {
+    width: 2px;
+    height: 0.9em;
+    margin-left: 5px;
+    border-radius: 2px;
+    background: #aeb9be;
+    animation: cursorBlink .75s step-end infinite;
+  }
+
+  @keyframes cursorBlink {
+    0%, 45% { opacity: 1; }
+    46%, 100% { opacity: 0; }
+  }
+
+  @keyframes nameSoftShift {
+    0%, 100% { background-position: 0% center; }
+    50% { background-position: 100% center; }
+  }
+
+  .hero-copy {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding-left: 1px;
+  }
+
+  .hero-copy .copy-dot {
+    flex: 0 0 6px;
+    width: 6px;
+    height: 6px;
+    margin-top: 11px;
+    border-radius: 50%;
+    background: #9bb8c7;
+    box-shadow: 0 0 12px rgba(155,184,199,.28);
+  }
+
+  @media (max-width: 700px) {
+    .hero-title .tagline {
+      white-space: normal;
+      font-size: 0.46em;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-title .name,
+    .hero-title .typing-cursor {
+      animation: none;
+    }
+  }
+</style>
+
+</head>
+
+<body>
+  <nav>
+    <div class="nav-inner">
+      <a class="brand" href="#home"><span class="brand-dot"></span> Sumaiya Orpa</a>
+      <button class="menu" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#learning">Learning</a></li>
+        <li><a href="#goals">Goals</a></li>
+        <li><a href="#journey">Journey</a></li>
+        <li><a href="#contact">Connect</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <div class="eyebrow"><i></i> CSE Student · Aspiring Software Developer</div>
+          <h1 class="hero-title">
+            <span class="hello">Hi, I'm</span>
+            <span class="name">Sumaiya Islam Orp<span class="name-last-a">a</span></span>
+            <span class="tagline" aria-label="Learn with purpose. Build with passion."><span class="typing-text"></span><span class="typing-cursor"></span></span>
+          </h1>
+          <p class="hero-copy">
+            <span class="copy-dot" aria-hidden="true"></span>I'm a Computer Science and Engineering student at Southeast University,
+            focused on developing a strong foundation in software development, programming,
+            and modern web technologies through hands-on learning and practical projects.
+          </p>
+          <div class="actions">
+            <a class="btn primary" href="#learning">Explore my journey <span>↗</span></a>
+            <a class="btn secondary" href="#contact">Let's connect <span>→</span></a>
+          </div>
+        </div>
+
+        <div class="visual reveal">
+          <div class="orbit three"></div>
+          <div class="orbit one"></div>
+          <div class="orbit two"></div>
+          <div class="profile-card">
+            <div class="monogram">SO</div>
+            <h3>Sumaiya Islam Orpa</h3>
+            <p class="role">Computer Science & Engineering · SEU</p>
+            <div class="status"><span>Currently</span><strong>1st Semester</strong></div>
+            <div class="chips">
+              <span class="chip">Python</span>
+              <span class="chip">Web Development</span>
+              <span class="chip">Problem Solving</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-top reveal">
+          <div class="label">01 / About me</div>
+          <div>
+            <h2>Where a strong academic foundation meets curiosity.</h2>
+            <p>
+              I'm currently in my 1st semester of CSE at Southeast University,
+              developing the technical and personal skills that will shape my journey
+              as a future software engineer.
+            </p>
+          </div>
+        </div>
+
+        <div class="about-grid">
+          <article class="card blue reveal">
+            <div class="icon">✦</div>
+            <h3>Academic Background</h3>
+            <ul class="details">
+              <li><b>Degree:</b> Computer Science and Engineering (CSE)</li>
+              <li><b>University:</b> Southeast University</li>
+              <li><b>Current stage:</b> 1st Semester</li>
+              <li><b>SSC:</b> Science group · GPA 5.00 / 5.00</li>
+              <li><b>HSC:</b> Science group · GPA 5.00 / 5.00</li>
+            </ul>
+          </article>
+
+          <article class="card orange reveal">
+            <div class="icon">◈</div>
+            <h3>Beyond Academics</h3>
+            <ul class="details">
+              <li><b>Participation:</b> Actively joined school cultural programs</li>
+              <li><b>Confidence:</b> Developed confidence through participation</li>
+              <li><b>Communication:</b> Strengthened communication skills</li>
+              <li><b>Teamwork:</b> Learned the value of working with others</li>
+              <li><b>Professional journey:</b> Carrying these qualities forward</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="learning">
+      <div class="container">
+        <div class="section-top reveal">
+          <div class="label">02 / What I'm learning</div>
+          <div>
+            <h2>Turning curiosity into skills, one project at a time.</h2>
+            <p>
+              I enjoy experimenting with code, working on small projects, and gradually
+              expanding my skill set toward becoming a well-rounded software developer.
+            </p>
+          </div>
+        </div>
+
+        <div class="learning-grid">
+          <article class="skill reveal">
+            <span class="skill-no">01 — CURRENT FOCUS</span><div class="skill-glow"></div>
+            <h3>Python</h3>
+            <p>Strengthening programming fundamentals, logical thinking, and problem-solving through Python.</p>
+            <div class="skill-line"><span></span></div>
+          </article>
+
+          <article class="skill reveal">
+            <span class="skill-no">02 — EXPLORING</span><div class="skill-glow"></div>
+            <h3>Web Development</h3>
+            <p>Exploring web development fundamentals and learning how ideas become useful, functional interfaces.</p>
+            <div class="skill-line"><span></span></div>
+          </article>
+
+          <article class="skill reveal">
+            <span class="skill-no">03 — BUILDING</span><div class="skill-glow"></div>
+            <h3>Problem Solving</h3>
+            <p>Developing programming logic through experimentation, small projects, debugging, and hands-on practice.</p>
+            <div class="skill-line"><span></span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="goals">
+      <div class="container">
+        <div class="goals reveal">
+          <div class="label">03 / Goals</div>
+          <h2>Growing into a well-rounded software developer.</h2>
+          <p class="goals-copy">
+            My aim is to grow by working on real-world projects, collaborating with others,
+            and continuously sharpening both my technical and analytical skills.
+          </p>
+
+          <div class="goal-grid">
+            <div class="goal"><strong>Real-world projects</strong><span>Turn concepts into practical working solutions.</span></div>
+            <div class="goal"><strong>Collaboration</strong><span>Work with others and learn through shared ideas.</span></div>
+            <div class="goal"><strong>Technical growth</strong><span>Continuously sharpen software development skills.</span></div>
+            <div class="goal"><strong>Analytical skills</strong><span>Strengthen logical thinking and structured problem solving.</span></div>
+            <div class="goal"><strong>Software development</strong><span>Transform ideas into functional, useful products.</span></div>
+            <div class="goal"><strong>Professional confidence</strong><span>Become a skilled and confident software engineer.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="journey">
+      <div class="container">
+        <div class="section-top reveal">
+          <div class="label">04 / My journey</div>
+          <div>
+            <h2>Learning by doing, with a clear direction.</h2>
+            <p>
+              Every stage is about building the next layer — from fundamentals and
+              experimentation to projects, collaboration, and professional growth.
+            </p>
+          </div>
+        </div>
+
+        <div class="journey">
+          <div class="journey-card reveal">
+            <h3>What drives me</h3>
+            <div class="journey-step"><div class="step-num">01</div><div><strong>Experiment</strong><span>Try ideas instead of only reading about them.</span></div></div>
+            <div class="journey-step"><div class="step-num">02</div><div><strong>Build</strong><span>Create small projects and turn concepts into something real.</span></div></div>
+            <div class="journey-step"><div class="step-num">03</div><div><strong>Debug</strong><span>Learn from mistakes and understand why something doesn't work.</span></div></div>
+            <div class="journey-step"><div class="step-num">04</div><div><strong>Improve</strong><span>Keep sharpening skills through consistent practice.</span></div></div>
+          </div>
+
+          <div class="journey-card reveal">
+            <h3>What I'm working toward</h3>
+            <div class="journey-step"><div class="step-num">→</div><div><strong>Become well-rounded</strong><span>Build both technical and analytical strength.</span></div></div>
+            <div class="journey-step"><div class="step-num">→</div><div><strong>Work on real-world projects</strong><span>Gain practical experience through meaningful work.</span></div></div>
+            <div class="journey-step"><div class="step-num">→</div><div><strong>Collaborate</strong><span>Connect with people who are curious about technology.</span></div></div>
+            <div class="journey-step"><div class="step-num">→</div><div><strong>Become a software engineer</strong><span>Turn ideas into functional solutions with confidence.</span></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="philosophy">
+      <div class="container">
+        <div class="philosophy reveal">
+          <div class="quote-symbol">“</div>
+          <h2>Learn by doing.<br><span>Improve by building.</span></h2>
+          <p>
+            Every project I build, every bug I fix, and every new concept I explore
+            brings me one step closer to becoming a skilled and confident software engineer.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact reveal">
+          <div>
+            <div class="label">05 / Let's connect</div>
+            <h2>Always open to learning, building & connecting.</h2>
+            <p>
+              I'm always open to learning opportunities, collaborations, and connecting
+              with like-minded people in tech.
+            </p>
+            <div class="actions">
+              <a class="btn primary" href="mailto:youremail@example.com">Start a conversation ↗</a>
+              <!-- Optional: add more links here once you have them, e.g. -->
+              <!-- <a class="btn secondary" href="https://github.com/yourusername" target="_blank" rel="noopener">GitHub ↗</a> -->
+              <!-- <a class="btn secondary" href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener">LinkedIn ↗</a> -->
+            </div>
+          </div>
+          <div class="connect-badge">↗</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 <span>Sumaiya Islam Orpa</span> · Built with curiosity, code & continuous learning.
+  </footer>
+
+  <script>
+    const menu = document.querySelector(".menu");
+    const links = document.querySelector(".nav-links");
+
+    menu.addEventListener("click", () => {
+      const open = links.classList.toggle("open");
+      menu.setAttribute("aria-expanded", open);
+    });
+
+    document.querySelectorAll(".nav-links a").forEach(a => {
+      a.addEventListener("click", () => {
+        links.classList.remove("open");
+        menu.setAttribute("aria-expanded","false");
+      });
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if(entry.isIntersecting){
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {threshold:.12});
+
+    document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+
+    // Infinite type → pause → delete → repeat.
+    const typingText = document.querySelector(".typing-text");
+    const typingTarget = "Learn with purpose. Build with passion.";
+    let typingIndex = 0;
+    let deleting = false;
+
+    function loopTyping() {
+      if (!typingText) return;
+
+      if (!deleting) {
+        typingText.textContent = typingTarget.slice(0, typingIndex + 1);
+        typingIndex++;
+
+        if (typingIndex >= typingTarget.length) {
+          deleting = true;
+          setTimeout(loopTyping, 1500);
+          return;
+        }
+        setTimeout(loopTyping, 62);
+      } else {
+        typingText.textContent = typingTarget.slice(0, typingIndex - 1);
+        typingIndex--;
+
+        if (typingIndex <= 0) {
+          deleting = false;
+          setTimeout(loopTyping, 300);
+          return;
+        }
+        setTimeout(loopTyping, 38);
+      }
+    }
+
+    loopTyping();
+
+    // Small cursor-follow glow on desktop
+    const glow = document.createElement("div");
+    glow.style.cssText = `
+      position:fixed;width:260px;height:260px;border-radius:50%;
+      pointer-events:none;z-index:-1;opacity:.045;
+      background:radial-gradient(circle, #57d6b1, transparent 65%);
+      transform:translate(-50%,-50%);
+    `;
+    document.body.appendChild(glow);
+
+    window.addEventListener("pointermove", e => {
+      glow.style.left = e.clientX + "px";
+      glow.style.top = e.clientY + "px";
+    });
+  </script>
+</body>
+</html>
